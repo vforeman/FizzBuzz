@@ -1,0 +1,53 @@
+<!--  
+ FizzBuzz in AngularJS
+ author:  Victor Foreman
+ email: vforeman@scs.howard.edu -->
+
+
+<!Doctype html
+
+<html ngapp>
+<html >
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+<style media='screen'type="text/css">
+ div{
+  color:grey;
+  display:inline-block;
+ }
+ p.Fizz{
+  color:red;
+ }
+ p.Buzz{
+  color:blue;
+ }
+ p.FizzBuzz{
+  color:purple;
+ }
+</style>
+<script type="text/javascript">
+ var app=angular.module('fizzbuzz',[]);
+
+ app.filter('range',function(){
+  return function(it,end){
+   for(var i=0;i<end;++i){
+    it.push(i);
+   }
+   return it;
+  };
+ });
+
+ app.controller('mainctrl',function($scope){
+  $scope.temp;
+  $scope.run=function(x){
+   return $scope.temp=(!(x%3) ? 'Fizz':'')+(!(x%5) ? 'Buzz':'')||x;
+  };
+ });
+</script>
+</head>
+<body ng-app='fizzbuzz' ng-controller='mainctrl'>
+ <div  ng-repeat='x in [] | range:100'>
+  <p class='{{temp}}'>{{run(x+1)}},</p>
+ </div>
+</body>
+</html>
